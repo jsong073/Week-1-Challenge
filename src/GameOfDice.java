@@ -8,11 +8,10 @@ Variables:
     a. A randomizer
     b. Two ints to hold the dice rolls
     c. One int to hold the score
-    d. (Maybe) a boolean to check if both dice rolled a 1
-    e. A String to record the user's response
-    f. A boolean to check if the game will continue
+    d. A String to record the user's response
+    e. A boolean to check if the game will continue
 Process:
-    a. A loop will be needed, which continues as long as the player says "yes" to rolling again, and the score is less
+    a. A loop will be needed, which continues as long as the player says "y" to rolling again, and the score is less
     than 100.
     b. Inside the loop, the two ints that hold dice rolls (diceRoll1 and diceRoll2) will be assigned a random value
     between 1 and 6.
@@ -24,10 +23,17 @@ Process:
         add the sum of diceRoll1 and diceRoll2 to score
        ENDIF
     d. Ask the user if they want to roll again
-        i. IF user types "yes" THEN
-                Set boolean continueGame to true
-           ELSE
-                Set boolean continueGame to false
+        i. WHILE the user's response is not exactly "y" or "n"
+               Ask them to respond again, specifically asking for "y" or n" (Case doesn't matter)
+           ENDWHILE
+
+           IF the score is less than 100 THEN
+                IF user types "y" THEN
+                    Set boolean continueGame to true
+                ELSE
+                    Set boolean continueGame to false
+                ENDIF
+           ENDIF
 
  */
 
@@ -40,8 +46,7 @@ public class GameOfDice {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
         int score = 0;
-        int diceRoll1 = 0;
-        int diceRoll2 = 0;
+        int diceRoll1 = 0, diceRoll2 = 0;
         boolean continueGame = true;
         String userResponse = "";
 
@@ -92,6 +97,7 @@ public class GameOfDice {
                     System.out.print("Please enter \"Y\" or \"N\". Roll again (Y/N)? ");
                     userResponse = input.nextLine();
                 }
+
                 /*
                 IF user enters "y" THEN
                     set continueGame to true, which should continue the loop as long as score is still less than 100
@@ -110,6 +116,7 @@ public class GameOfDice {
 
         } while (continueGame == true && score < 100);
 
+        //conditional checks if the user quit or finished the game
         if (score >= 100) {
             System.out.println("You have scored " + score + ". You win!");
         }
