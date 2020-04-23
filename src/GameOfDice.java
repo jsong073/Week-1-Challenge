@@ -58,6 +58,8 @@ public class GameOfDice {
                 " of your dice, you score 25.");
         System.out.println();
         System.out.println("Ready? Let's begin.");
+
+        //This loop runs the game
         do {
             diceRoll1 = 1 + random.nextInt(6);
             diceRoll2 = 1 + random.nextInt(6);
